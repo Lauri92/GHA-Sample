@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code  # Get the code
         uses: actions/checkout@v3 # Actions = normal commands managed by the GitHub Team. Identifier 'actions/checkout@v2', might be different versions in the future
 
-      - name: set up JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
