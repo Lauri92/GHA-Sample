@@ -3,9 +3,9 @@ name: Android CI
 on: # See workflow_dispatch for manual build
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build: # First job, define more with same indentation. Jobs run in parallel. Consider sequential?
@@ -15,7 +15,7 @@ jobs:
     steps: # Every job requires its own steps
 
       - name: Checkout code  # Get the code
-        uses: actions/checkout@v2 # Actions = normal commands managed by the GitHub Team. Identifier 'actions/checkout@v2', might be different versions in the future
+        uses: actions/checkout@v3 # Actions = normal commands managed by the GitHub Team. Identifier 'actions/checkout@v2', might be different versions in the future
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew # Own shell command compare to 'uses' 'actions/'
@@ -24,16 +24,16 @@ jobs:
         run: ./gradlew test
 
       - name: Upload test report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
-      - name: set up JDK 11
-        uses: actions/setup-java@v2
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
           cache: gradle
 
       - name: Build with Gradle
@@ -48,7 +48,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
@@ -60,5 +60,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Greet
         run: echo "Hello world"
