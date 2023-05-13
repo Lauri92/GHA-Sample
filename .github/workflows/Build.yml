@@ -39,11 +39,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Produced output
-        run: |
-          ls -lah
-          ls -lah build
-
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
@@ -60,7 +55,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Release App
-          path: app/build/outputs/apk/debug/app-release-unsigned.apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Produced output
+        run: |
+          ls -lah
+          ls -lah build/outputs
 
   second-job:
 
