@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew # Own shell command compare to 'uses' 'actions/'
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test # Failing a test will fail the workflow
 
       - name: Upload test report
         uses: actions/upload-artifact@v3
