@@ -3,9 +3,9 @@ name: Android CI
 on: # See workflow_dispatch for manual build
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [  ]
   pull_request:
-    branches: [ main ]
+    branches: [  ]
 
 jobs:
   build: # First job, define more with same indentation. Jobs run in parallel. Consider sequential?
@@ -70,6 +70,3 @@ jobs:
 
       - name: Greet
         run: echo "Hello world"
-
-      - name: Output GitHub context
-        run: echo ${{ toJSON(github) }}
