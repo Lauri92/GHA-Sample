@@ -5,7 +5,7 @@ on: # See workflow_dispatch for manual build
   push:
     branches: [ main ]  # "release/*" ?, [skip ci]
     paths-ignore:
-      - '.github/workflows/*'
+      #- '.github/workflows/*'
   pull_request:
     branches: [ main ]
 
@@ -73,7 +73,7 @@ jobs:
       - name: Get build artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Debug App
+          name: [Debug App, Release App]
 
       - name: Output contents
         run: ls
