@@ -62,16 +62,16 @@ jobs:
       - name: Produced output
         run: ls -lah build
 
-  Upload:
+  Download:
 
-    needs: build # Previous job has to be completed successfully, parallel or sequential?
+    needs: Build # Previous job has to be completed successfully, parallel or sequential?
 
     runs-on: ubuntu-latest
 
     steps:
 
       - name: Get build artifacts
-        uses: actions/donwload-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: Debug App
 
