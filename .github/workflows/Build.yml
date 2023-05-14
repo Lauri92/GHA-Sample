@@ -58,9 +58,7 @@ jobs:
           path: app/build/outputs/apk/release/app-release-unsigned.apk
 
       - name: Produced output
-        run: |
-          ls -lah
-          ls -lah build/outputs
+        run: ls -lah build
 
   second-job:
 
@@ -72,3 +70,6 @@ jobs:
 
       - name: Greet
         run: echo "Hello world"
+
+      - name: Output GitHub context
+        run: echo ${{ toJSON(github) }}
