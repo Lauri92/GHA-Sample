@@ -10,7 +10,7 @@ on: # See workflow_dispatch for manual build
     branches: [ main ]
 
 jobs:
-  build: # First job, define more with same indentation. Jobs run in parallel. Consider sequential?
+  Build: # First job, define more with same indentation. Jobs run in parallel. Consider sequential?
 
     runs-on: ubuntu-latest # Every job gets its own runner - own virtual machine, totally isolated!
 
@@ -47,8 +47,8 @@ jobs:
       - name: Upload Debug APK
         uses: actions/upload-artifact@v3
         with:
-          name: Debug App
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: Debug App # Name to be given to the artifact produced
+          path: app/build/outputs/apk/debug/app-debug.apk # Path where the artifact should be loaded from
 
       - name: Build release APK
         run: ./gradlew assembleRelease
@@ -62,7 +62,7 @@ jobs:
       - name: Produced output
         run: ls -lah build
 
-  second-job:
+  Upload:
 
     needs: build # Previous job has to be completed successfully, parallel or sequential?
 
@@ -70,5 +70,10 @@ jobs:
 
     steps:
 
-      - name: Greet
-        run: echo "Hello world"
+      - name: Get build artifacts
+        uses: actions/donwload-artifact@v3
+        with:
+          name: Debug App
+
+      - name: Output contents
+        run: ls
