@@ -3,9 +3,9 @@ name: Android CI
 on: # See workflow_dispatch for manual build
   workflow_dispatch:
   push:
-    branches: [  ]
+    branches: [ master ]  # "release/*" ?
   pull_request:
-    branches: [  ]
+    branches: [ master ]
 
 jobs:
   build: # First job, define more with same indentation. Jobs run in parallel. Consider sequential?
@@ -62,7 +62,7 @@ jobs:
 
   second-job:
 
-    needs: build # Previous job has to be completed successfully
+    needs: build # Previous job has to be completed successfully, parallel or sequential?
 
     runs-on: ubuntu-latest
 

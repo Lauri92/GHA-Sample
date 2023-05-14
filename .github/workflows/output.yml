@@ -13,3 +13,6 @@ jobs:
 
       - name: Output Github context
         run: echo "${{ toJSON(github) }}"
+
+      - name: Output Github context event
+        run: echo "${{ toJSON(github.event) }}"
